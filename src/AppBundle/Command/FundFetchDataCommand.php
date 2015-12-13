@@ -2,6 +2,7 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Repository\FundRepository;
 use AppBundle\Service\Fetcher\FundDataFetcher;
 use Symfony\Component\Console\Input\InputArgument;
 
@@ -10,13 +11,19 @@ class FundFetchDataCommand extends AbstractAsyncCommand
     /** @var FundDataFetcher */
     protected $fundDataFetcher;
 
+    /** @var FundRepository  */
+    protected $fundRepository;
+
     /**
-     * @param $kernelRootDir
+     * @param string $kernelRootDir
      * @param FundDataFetcher $fundDataFetcher
+     * @param FundRepository $fundRepository
      */
-    public function __construct($kernelRootDir, FundDataFetcher $fundDataFetcher)
+    public function __construct($kernelRootDir, FundDataFetcher $fundDataFetcher, FundRepository $fundRepository)
     {
         $this->fundDataFetcher = $fundDataFetcher;
+        $this->fundRepository = $fundRepository;
+
         parent::__construct($kernelRootDir);
     }
 
@@ -52,6 +59,6 @@ class FundFetchDataCommand extends AbstractAsyncCommand
      */
     protected function getElementsIdsToProcess()
     {
-        return [1, 2];
+        return $this->fundRepository->getExternalFundIds();
     }
 }

@@ -19,6 +19,6 @@ services:
     app.command.fund.fetch_data:
         parent: app.command.async
         class: AppBundle\Command\FundFetchDataCommand
-        arguments: ["@app.fetcher.fund"]
+        arguments: ["@app.fetcher.fund", "@repository.fund"]
         tags:
             -  { name: console.command }
