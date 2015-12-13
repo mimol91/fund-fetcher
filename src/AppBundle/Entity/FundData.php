@@ -6,7 +6,7 @@ use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * FundData
+ * FundData.
  *
  * @ORM\Table(name="fund_data")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\FundDataRepository")
@@ -45,7 +45,7 @@ class FundData
     private $fund;
 
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -104,6 +104,7 @@ class FundData
 
     /**
      * @param Fund $fund
+     *
      * @return FundData
      */
     public function setFund(Fund $fund)

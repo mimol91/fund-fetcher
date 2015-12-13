@@ -5,9 +5,8 @@ namespace AppBundle\Command;
 use AppBundle\Service\Fetcher\FundDataFetcher;
 use Symfony\Component\Console\Input\InputArgument;
 
-class FetchFundDataCommand extends AbstractAsyncCommand
+class FundFetchDataCommand extends AbstractAsyncCommand
 {
-
     /** @var FundDataFetcher */
     protected $fundDataFetcher;
 
@@ -33,7 +32,7 @@ class FetchFundDataCommand extends AbstractAsyncCommand
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     protected function getCommandName()
     {
@@ -41,23 +40,18 @@ class FetchFundDataCommand extends AbstractAsyncCommand
     }
 
     /**
-     * Method used to process singe element
-     * @param mixed $argument . Usually element id to process
-     * @return int status code
+     * {@inheritdoc}
      */
     protected function process($argument)
     {
         $fundExternalId = (int) $argument;
-
-        var_dump($fundExternalId);die();
     }
 
     /**
-     * Returns elements ids To process
-     * @return array
+     * {@inheritdoc}
      */
     protected function getElementsIdsToProcess()
     {
-        return [1,2,];
+        return [1, 2];
     }
 }

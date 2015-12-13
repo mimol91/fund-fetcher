@@ -1,11 +1,11 @@
 services:
-    app.command.create_fund:
-        class: AppBundle\Command\CreateFundCommand
+    app.command.fund.create:
+        class: AppBundle\Command\FundCreateCommand
         arguments: ["@doctrine.orm.default_entity_manager"]
         tags:
             -  { name: console.command }
 
-    app.command.list_fund:
+    app.command.fund.list:
         class: AppBundle\Command\FundListCommand
         arguments: ["@repository.fund"]
         tags:
@@ -16,9 +16,9 @@ services:
         arguments: ["%kernel.root_dir%"]
         abstract: true
 
-    app.command.fetch_fund_data:
+    app.command.fund.fetch_data:
         parent: app.command.async
-        class: AppBundle\Command\FetchFundDataCommand
+        class: AppBundle\Command\FundFetchDataCommand
         arguments: ["@app.fetcher.fund"]
         tags:
             -  { name: console.command }

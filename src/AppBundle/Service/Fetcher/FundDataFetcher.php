@@ -1,6 +1,5 @@
 <?php
 
-
 namespace AppBundle\Service\Fetcher;
 
 use AppBundle\Entity\Fund;
@@ -10,6 +9,7 @@ class FundDataFetcher
 {
     /**
      * @param Fund $fund
+     *
      * @return ArrayCollection
      */
     public function fetchData(Fund $fund)

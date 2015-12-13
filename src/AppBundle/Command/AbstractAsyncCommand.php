@@ -22,6 +22,7 @@ abstract class AbstractAsyncCommand extends Command
 
     /**
      * AbstractAsyncCommand constructor.
+     *
      * @param string $kernelRootDir
      */
     public function __construct($kernelRootDir)
@@ -37,14 +38,17 @@ abstract class AbstractAsyncCommand extends Command
     abstract protected function getCommandName();
 
     /**
-     * Method used to process singe element
+     * Method used to process singe element.
+     *
      * @param mixed $argument. Usually element id to process
+     *
      * @return int status code
      */
     abstract protected function process($argument);
 
     /**
-     * Returns elements ids To process
+     * Returns elements ids To process.
+     *
      * @return array
      */
     abstract protected function getElementsIdsToProcess();
