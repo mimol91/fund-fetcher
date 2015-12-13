@@ -10,3 +10,15 @@ services:
         arguments: ["@repository.fund"]
         tags:
             -  { name: console.command }
+
+    app.command.async:
+        class: AppBundle\Command\AbstractAsyncCommand
+        arguments: ["%kernel.root_dir%"]
+        abstract: true
+
+    app.command.fetch_fund_data:
+        parent: app.command.async
+        class: AppBundle\Command\FetchFundDataCommand
+        arguments: ["@app.fetcher.fund"]
+        tags:
+            -  { name: console.command }

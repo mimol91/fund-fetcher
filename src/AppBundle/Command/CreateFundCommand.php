@@ -29,7 +29,7 @@ class CreateFundCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('app:generate:fund')
+            ->setName('app:fund:generate')
             ->setDescription('Generate a fund entity');
     }
 

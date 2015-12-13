@@ -29,13 +29,12 @@ class FundListCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('app:list:found')
+            ->setName('app:found:list')
             ->setDescription('Display fund list');
     }
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
+     * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
