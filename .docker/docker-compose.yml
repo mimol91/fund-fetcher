@@ -1,0 +1,17 @@
+kurs-php:
+  image: mobilizer
+  links:
+   - kurs-db
+  ports:
+   - "80:80"
+  volumes:
+   - ../:/app
+kurs-db:
+  image: mysql:5.5
+  ports:
+     - "3306:3306"
+  environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: root
+      MYSQL_USER: xsdev
+      MYSQL_PASSWORD: xsdev
