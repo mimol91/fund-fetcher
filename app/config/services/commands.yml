@@ -1,0 +1,12 @@
+services:
+    app.command.create_fund:
+        class: AppBundle\Command\CreateFundCommand
+        arguments: ["@doctrine.orm.default_entity_manager"]
+        tags:
+            -  { name: console.command }
+
+    app.command.list_fund:
+        class: AppBundle\Command\FundListCommand
+        arguments: ["@repository.fund"]
+        tags:
+            -  { name: console.command }
