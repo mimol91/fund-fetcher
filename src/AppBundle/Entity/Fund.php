@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,8 +35,18 @@ class Fund
     private $externalId;
 
     /**
-     * Get id.
+     * @var FundData[]|ArrayCollection
      *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FundData", mappedBy="fund")
+     */
+    private $fundData;
+
+    public function __construct()
+    {
+        $this->fundData = new ArrayCollection();
+    }
+
+    /**
      * @return int
      */
     public function getId()
@@ -44,8 +55,6 @@ class Fund
     }
 
     /**
-     * Set name.
-     *
      * @param string $name
      *
      * @return Fund
@@ -58,8 +67,6 @@ class Fund
     }
 
     /**
-     * Get name.
-     *
      * @return string
      */
     public function getName()
@@ -68,8 +75,6 @@ class Fund
     }
 
     /**
-     * Set externalId.
-     *
      * @param int $externalId
      *
      * @return Fund
@@ -82,12 +87,38 @@ class Fund
     }
 
     /**
-     * Get externalId.
-     *
      * @return int
      */
     public function getExternalId()
     {
         return $this->externalId;
+    }
+
+    /**
+     * @param FundData $fundData
+     *
+     * @return Fund
+     */
+    public function addFundData(FundData $fundData)
+    {
+        $this->fundData->add($fundData);
+
+        return $this;
+    }
+
+    /**
+     * @param FundData $fundData
+     */
+    public function removeFundDat(FundData $fundData)
+    {
+        $this->fundData->removeElement($fundData);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getFundData()
+    {
+        return $this->fundData;
     }
 }
