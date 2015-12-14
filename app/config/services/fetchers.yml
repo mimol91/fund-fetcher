@@ -1,3 +1,6 @@
+parameters:
+    fund_fetch_url_pattern: 'http://www.notowania.openlife.pl/System/QuotesExportCsv?foundid=%d'
 services:
     app.fetcher.fund:
         class: AppBundle\Service\Fetcher\FundDataFetcher
+        arguments: ["%fund_fetch_url_pattern%", "@app.fetcher.parser.csv"]

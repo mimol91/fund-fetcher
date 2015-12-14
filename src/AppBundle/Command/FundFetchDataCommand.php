@@ -2,8 +2,10 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Entity\Fund;
 use AppBundle\Repository\FundRepository;
 use AppBundle\Service\Fetcher\FundDataFetcher;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\Console\Input\InputArgument;
 
 class FundFetchDataCommand extends AbstractAsyncCommand
@@ -14,15 +16,24 @@ class FundFetchDataCommand extends AbstractAsyncCommand
     /** @var FundRepository  */
     protected $fundRepository;
 
+    /** @var EntityManager */
+    protected $entityManager;
+
     /**
-     * @param string $kernelRootDir
+     * @param string          $kernelRootDir
      * @param FundDataFetcher $fundDataFetcher
-     * @param FundRepository $fundRepository
+     * @param FundRepository  $fundRepository
+     * @param EntityManager   $entityManager
      */
-    public function __construct($kernelRootDir, FundDataFetcher $fundDataFetcher, FundRepository $fundRepository)
-    {
+    public function __construct(
+        $kernelRootDir,
+        FundDataFetcher $fundDataFetcher,
+        FundRepository $fundRepository,
+        EntityManager $entityManager
+    ) {
         $this->fundDataFetcher = $fundDataFetcher;
         $this->fundRepository = $fundRepository;
+        $this->entityManager = $entityManager;
 
         parent::__construct($kernelRootDir);
     }
@@ -52,6 +63,15 @@ class FundFetchDataCommand extends AbstractAsyncCommand
     protected function process($argument)
     {
         $fundExternalId = (int) $argument;
+        $fund = $this->fundRepository->findOneBy(['externalId' => $fundExternalId]);
+        if (!$fund instanceof Fund) {
+            throw new \Exception(sprintf('Fund with external id %s not found', $fundExternalId));
+        }
+
+        $fundData = $this->fundDataFetcher->fetchData($fund);
+        $fund->setFundData($fundData);
+
+        $this->entityManager->flush($fund);
     }
 
     /**

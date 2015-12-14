@@ -19,6 +19,6 @@ services:
     app.command.fund.fetch_data:
         parent: app.command.async
         class: AppBundle\Command\FundFetchDataCommand
-        arguments: ["@app.fetcher.fund", "@repository.fund"]
+        arguments: ["@app.fetcher.fund", "@repository.fund", "@doctrine.orm.default_entity_manager"]
         tags:
             -  { name: console.command }

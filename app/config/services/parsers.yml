@@ -1,0 +1,4 @@
+services:
+    app.fetcher.parser.csv:
+        class: AppBundle\Service\Fetcher\FundCSVDataParser
+

@@ -2,7 +2,7 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Doctrine\FundDataCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,27 +23,27 @@ class Fund
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="externalId", type="integer", unique=true)
+     * @ORM\Column(type="integer", unique=true)
      */
     private $externalId;
 
     /**
-     * @var FundData[]|ArrayCollection
+     * @var FundDataCollection
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FundData", mappedBy="fund")
+     * @ORM\Column(type="fund_data_collection")
      */
-    private $fundData;
+    private $fundDataCollection;
 
     public function __construct()
     {
-        $this->fundData = new ArrayCollection();
+        $this->fundDataCollection = new FundDataCollection();
     }
 
     /**
@@ -95,30 +95,22 @@ class Fund
     }
 
     /**
-     * @param FundData $fundData
+     * @param FundDataCollection $fundDataCollection
      *
      * @return Fund
      */
-    public function addFundData(FundData $fundData)
+    public function setFundData(FundDataCollection $fundDataCollection)
     {
-        $this->fundData->add($fundData);
+        $this->fundDataCollection = $fundDataCollection;
 
         return $this;
     }
 
     /**
-     * @param FundData $fundData
+     * @return FundDataCollection
      */
-    public function removeFundDat(FundData $fundData)
+    public function getFundDataCollection()
     {
-        $this->fundData->removeElement($fundData);
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getFundData()
-    {
-        return $this->fundData;
+        return $this->fundDataCollection;
     }
 }

@@ -1,3 +1,4 @@
 imports:
     - { resource: 'services/commands.yml' }
     - { resource: 'services/fetchers.yml' }
+    - { resource: 'services/parsers.yml' }

@@ -29,7 +29,7 @@ class FundListCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('app:found:list')
+            ->setName('app:fund:list')
             ->setDescription('Display fund list');
     }
 
