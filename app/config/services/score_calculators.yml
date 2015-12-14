@@ -1,0 +1,5 @@
+services:
+    app.score_calculator.month:
+        class: AppBundle\Service\ScoreCalculator\MonthFundScoreCalculator
+
+

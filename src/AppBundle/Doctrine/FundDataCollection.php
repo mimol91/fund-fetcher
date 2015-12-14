@@ -3,6 +3,7 @@
 namespace AppBundle\Doctrine;
 
 use AppBundle\Model\FundData;
+use Doctrine\Common\Collections\Criteria;
 
 class FundDataCollection extends AbstractSerializableCollection
 {
@@ -12,5 +13,13 @@ class FundDataCollection extends AbstractSerializableCollection
     public function getElementClass()
     {
         return FundData::class;
+    }
+
+    public function getSortedByDate()
+    {
+        $criteria = Criteria::create()
+            ->orderBy(['date' => Criteria::ASC]);
+
+        return $this->matching($criteria);
     }
 }

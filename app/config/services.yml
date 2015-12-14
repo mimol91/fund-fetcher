@@ -2,3 +2,4 @@ imports:
     - { resource: 'services/commands.yml' }
     - { resource: 'services/fetchers.yml' }
     - { resource: 'services/parsers.yml' }
+    - { resource: 'services/score_calculators.yml' }

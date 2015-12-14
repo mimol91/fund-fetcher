@@ -7,7 +7,7 @@ services:
 
     app.command.fund.list:
         class: AppBundle\Command\FundListCommand
-        arguments: ["@repository.fund"]
+        arguments: ["@repository.fund", "@app.score_calculator.month"]
         tags:
             -  { name: console.command }
 
