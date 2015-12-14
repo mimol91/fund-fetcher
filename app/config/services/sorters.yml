@@ -1,0 +1,4 @@
+services:
+    app.fetcher.sorter:
+        class: AppBundle\Service\Sorter\Sorter
+

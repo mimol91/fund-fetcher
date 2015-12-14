@@ -53,7 +53,7 @@ class RepositoryCompilerPass implements CompilerPassInterface
         $parts = explode('\\', $repositoryClassName);
         $className = end($parts);
 
-        return substr('repository.' . Container::underscore($className), 0, -11);
+        return substr('repository.'.Container::underscore($className), 0, -11);
     }
 
     /**

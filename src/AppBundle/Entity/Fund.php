@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Doctrine\FundDataCollection;
+use AppBundle\Service\ScoreCalculator\FundScoreCalculatorInterface;
+use AppBundle\Service\ScoreCalculator\ScoreCalculatorException;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,6 +35,11 @@ class Fund
      * @ORM\Column(type="integer", unique=true)
      */
     private $externalId;
+
+    /**
+     * @var null|float
+     */
+    private $score = null;
 
     /**
      * @var FundDataCollection
@@ -112,5 +119,27 @@ class Fund
     public function getFundDataCollection()
     {
         return $this->fundDataCollection;
+    }
+
+    /**
+     * @param FundScoreCalculatorInterface $scoreCalculator
+     *
+     * @return float|null
+     */
+    public function generateScore(FundScoreCalculatorInterface $scoreCalculator)
+    {
+        try {
+            return $this->score = $scoreCalculator->getScore($this);
+        } catch (ScoreCalculatorException $e) {
+            return $this->score = null;
+        }
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getScore()
+    {
+        return $this->score;
     }
 }
