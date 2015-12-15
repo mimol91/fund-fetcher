@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Fund</title>
+        <link rel="stylesheet" href="build/vendor{{MIN}}.css?build={{NOW}}">
+        <link rel="stylesheet" href="build/style{{MIN}}.css?build={{NOW}}">
+    </head>
+    <body>
+        <div ui-view>
+            <div data-ui-view="content"></div>
+        </div>
+        {{RELOAD}}
+        <script> window.APP_MODE = '{{MODE}}'; </script>
+        <script src="build/vendor{{MIN}}.js?build={{NOW}}"></script>
+        <script src="build/app{{MIN}}.js?build={{NOW}}"></script>
+    </body>
+</html>

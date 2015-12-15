@@ -2,3 +2,7 @@
 vendor/
 var/cache
 var/logs
+node_modules/
+bower_components/
+web/build/
+web/index.html

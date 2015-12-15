@@ -1,0 +1,16 @@
+{
+  "name": "Fund",
+  "private": true,
+  "ignore": [
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.6",
+    "jquery": "~2.1.4"
+  }
+}
