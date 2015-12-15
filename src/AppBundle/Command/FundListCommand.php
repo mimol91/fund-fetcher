@@ -27,9 +27,9 @@ class FundListCommand extends Command
     protected $sorter;
 
     /**
-     * @param FundRepository               $fundRepository
+     * @param FundRepository           $fundRepository
      * @param ScoreCalculatorAggregate $scoreCalculatorAggregate
-     * @param Sorter                       $sorter
+     * @param Sorter                   $sorter
      */
     public function __construct(
         FundRepository $fundRepository,

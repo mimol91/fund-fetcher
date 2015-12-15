@@ -5,7 +5,6 @@ namespace AppBundle\Entity;
 use AppBundle\Doctrine\FundDataCollection;
 use AppBundle\Service\ScoreCalculator\FundScoreCalculatorInterface;
 use AppBundle\Service\ScoreCalculator\ScoreCalculatorException;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -21,7 +20,7 @@ class Fund
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"list", "object"})
+     * @Groups({"list", "fund_details"})
      */
     private $id;
 
@@ -29,7 +28,7 @@ class Fund
      * @var string
      *
      * @ORM\Column(type="string", length=255)
-     * @Groups({"list", "object"})
+     * @Groups({"list", "fund_details"})
      */
     private $name;
 
@@ -37,13 +36,13 @@ class Fund
      * @var int
      *
      * @ORM\Column(type="integer", unique=true)
-     * @Groups({"list", "object"})
+     * @Groups({"list", "fund_details"})
      */
     private $externalId;
 
     /**
      * @var array
-     * @Groups({"list", "object"})
+     * @Groups({"list", "fund_details"})
      */
     private $score = [];
 
@@ -51,7 +50,7 @@ class Fund
      * @var FundDataCollection
      *
      * @ORM\Column(type="fund_data_collection")
-     * @Groups({"object"})
+     * @Groups({"fund_details"})
      */
     private $fundDataCollection;
 
@@ -142,12 +141,13 @@ class Fund
 
     /**
      * @param string $scoreName
+     *
      * @return float|null
      */
     public function getScoreValue($scoreName)
     {
         if (!array_key_exists($scoreName, $this->score)) {
-            return null;
+            return;
         }
 
         return $this->score[$scoreName];

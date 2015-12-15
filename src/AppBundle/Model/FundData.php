@@ -5,16 +5,19 @@ namespace AppBundle\Model;
 use AppBundle\Doctrine\ArraySerializableInterface;
 use DateTimeInterface;
 use InvalidArgumentException;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 class FundData implements ArraySerializableInterface
 {
     /**
      * @var DateTimeInterface
+     * @Groups({"fund_details"})
      */
     private $date;
 
     /**
      * @var float
+     * @Groups({"fund_details"})
      */
     private $price;
 

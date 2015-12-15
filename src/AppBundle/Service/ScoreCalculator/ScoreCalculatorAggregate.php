@@ -18,7 +18,9 @@ class ScoreCalculatorAggregate
 
     /**
      * @param string $scoreCalculatorName
+     *
      * @return FundScoreCalculatorInterface
+     *
      * @throws InvalidArgumentException
      */
     public function getScoreCalculator($scoreCalculatorName)
@@ -48,7 +50,7 @@ class ScoreCalculatorAggregate
     public function calculateScore(array $funds)
     {
         foreach ($funds as $fund) {
-            foreach($this->scoreCalculators as $scoreCalculator) {
+            foreach ($this->scoreCalculators as $scoreCalculator) {
                 $fund->generateScore($scoreCalculator);
             }
         }
