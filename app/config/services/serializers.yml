@@ -1,0 +1,4 @@
+services:
+    app.serializer.fund:
+        class: AppBundle\Service\Serializer\FundSerializer
+

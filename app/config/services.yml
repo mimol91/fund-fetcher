@@ -4,3 +4,4 @@ imports:
     - { resource: 'services/parsers.yml' }
     - { resource: 'services/score_calculators.yml' }
     - { resource: 'services/sorters.yml' }
+    - { resource: 'services/serializers.yml' }

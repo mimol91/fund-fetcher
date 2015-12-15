@@ -7,6 +7,7 @@ use AppBundle\Service\ScoreCalculator\FundScoreCalculatorInterface;
 use AppBundle\Service\ScoreCalculator\ScoreCalculatorException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Table(name="fund")
@@ -20,6 +21,7 @@ class Fund
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"list", "object"})
      */
     private $id;
 
@@ -27,6 +29,7 @@ class Fund
      * @var string
      *
      * @ORM\Column(type="string", length=255)
+     * @Groups({"list", "object"})
      */
     private $name;
 
@@ -34,11 +37,13 @@ class Fund
      * @var int
      *
      * @ORM\Column(type="integer", unique=true)
+     * @Groups({"list", "object"})
      */
     private $externalId;
 
     /**
      * @var array
+     * @Groups({"list", "object"})
      */
     private $score = [];
 
@@ -46,6 +51,7 @@ class Fund
      * @var FundDataCollection
      *
      * @ORM\Column(type="fund_data_collection")
+     * @Groups({"object"})
      */
     private $fundDataCollection;
 
@@ -145,5 +151,13 @@ class Fund
         }
 
         return $this->score[$scoreName];
+    }
+
+    /**
+     * @return array
+     */
+    public function getScore()
+    {
+        return $this->score;
     }
 }
