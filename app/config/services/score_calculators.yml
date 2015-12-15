@@ -1,5 +1,23 @@
 services:
-    app.score_calculator.month:
-        class: AppBundle\Service\ScoreCalculator\MonthFundScoreCalculator
+    app.score_calculator.aggregate:
+        class: AppBundle\Service\ScoreCalculator\ScoreCalculatorAggregate
 
+    app.score_calculator.one_month:
+        class: AppBundle\Service\ScoreCalculator\OneMonthFundScoreCalculator
+        tags:
+            -  { name: app.score_calculator }
 
+    app.score_calculator.three_month:
+        class: AppBundle\Service\ScoreCalculator\ThreeMonthFundScoreCalculator
+        tags:
+            -  { name: app.score_calculator }
+
+    app.score_calculator.six_month:
+        class: AppBundle\Service\ScoreCalculator\SixMonthFundScoreCalculator
+        tags:
+            -  { name: app.score_calculator }
+
+    app.score_calculator.one_year:
+        class: AppBundle\Service\ScoreCalculator\OneYearFundScoreCalculator
+        tags:
+            -  { name: app.score_calculator }

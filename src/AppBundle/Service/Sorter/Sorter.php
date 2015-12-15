@@ -3,28 +3,24 @@
 namespace AppBundle\Service\Sorter;
 
 use AppBundle\Entity\Fund;
-use AppBundle\Service\ScoreCalculator\FundScoreCalculatorInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Criteria;
 
 class Sorter
 {
     /**
      * @param Fund[]                       $funds
-     * @param FundScoreCalculatorInterface $scoreCalculator
+     * @param string $scoreCalculatorName
      *
      * @return Fund[]
      */
-    public function getSortedByScore(array $funds, FundScoreCalculatorInterface $scoreCalculator)
+    public function getSortedByScore(array $funds, $scoreCalculatorName)
     {
-        $funds = new ArrayCollection($funds);
-        foreach ($funds as $fund) {
-            $fund->generateScore($scoreCalculator);
-        }
+        usort($funds, function(Fund $a, Fund $b) use ($scoreCalculatorName) {
+            $aScore = $a->getScoreValue($scoreCalculatorName);
+            $bScore = $b->getScoreValue($scoreCalculatorName);
 
-        $criteria = Criteria::create()
-            ->orderBy(['score' => Criteria::DESC]);
+            return $aScore < $bScore;
+        });
 
-        return $funds->matching($criteria)->toArray();
+        return $funds;
     }
 }

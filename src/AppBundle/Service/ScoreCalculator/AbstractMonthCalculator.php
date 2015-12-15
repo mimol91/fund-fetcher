@@ -7,9 +7,10 @@ use AppBundle\Entity\Fund;
 use AppBundle\Model\FundData;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
+use DateTimeInterface;
 use Doctrine\Common\Collections\Criteria;
 
-class MonthFundScoreCalculator implements FundScoreCalculatorInterface
+abstract class AbstractMonthCalculator
 {
     /**
      * @param Fund $fund
@@ -31,6 +32,11 @@ class MonthFundScoreCalculator implements FundScoreCalculatorInterface
     }
 
     /**
+     * @return DateTimeInterface
+     */
+    abstract protected function getStartDate();
+
+    /**
      * @param FundDataCollection $fundDataCollection
      *
      * @return float
@@ -40,7 +46,7 @@ class MonthFundScoreCalculator implements FundScoreCalculatorInterface
     private function getStartValue(FundDataCollection $fundDataCollection)
     {
         $criteria = Criteria::create()
-            ->andWhere(Criteria::expr()->gte('date', Carbon::today()->subMonth(1)))
+            ->andWhere(Criteria::expr()->gte('date', $this->getStartDate()))
             ->setMaxResults(1);
 
         $recentData = $fundDataCollection->matching($criteria)->first();
@@ -85,6 +91,6 @@ class MonthFundScoreCalculator implements FundScoreCalculatorInterface
      */
     private function getMaxIntervalMismatch()
     {
-        return CarbonInterval::days(5);
+        return CarbonInterval::days(7);
     }
 }

@@ -14,4 +14,9 @@ interface FundScoreCalculatorInterface
      * @throws ScoreCalculatorException
      */
     public function getScore(Fund $fund);
+
+    /**
+     * @return string
+     */
+    public function getCalculatorName();
 }

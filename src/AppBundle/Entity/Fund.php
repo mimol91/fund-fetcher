@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use AppBundle\Doctrine\FundDataCollection;
 use AppBundle\Service\ScoreCalculator\FundScoreCalculatorInterface;
 use AppBundle\Service\ScoreCalculator\ScoreCalculatorException;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,9 +38,9 @@ class Fund
     private $externalId;
 
     /**
-     * @var null|float
+     * @var array
      */
-    private $score = null;
+    private $score = [];
 
     /**
      * @var FundDataCollection
@@ -123,23 +124,26 @@ class Fund
 
     /**
      * @param FundScoreCalculatorInterface $scoreCalculator
-     *
-     * @return float|null
      */
     public function generateScore(FundScoreCalculatorInterface $scoreCalculator)
     {
         try {
-            return $this->score = $scoreCalculator->getScore($this);
+            $this->score[$scoreCalculator->getCalculatorName()] = $scoreCalculator->getScore($this);
         } catch (ScoreCalculatorException $e) {
-            return $this->score = null;
+            $this->score[$scoreCalculator->getCalculatorName()] = null;
         }
     }
 
     /**
+     * @param string $scoreName
      * @return float|null
      */
-    public function getScore()
+    public function getScoreValue($scoreName)
     {
-        return $this->score;
+        if (!array_key_exists($scoreName, $this->score)) {
+            return null;
+        }
+
+        return $this->score[$scoreName];
     }
 }

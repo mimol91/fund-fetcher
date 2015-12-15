@@ -4,7 +4,11 @@ namespace AppBundle\Command;
 
 use AppBundle\Entity\Fund;
 use AppBundle\Repository\FundRepository;
-use AppBundle\Service\ScoreCalculator\FundScoreCalculatorInterface;
+use AppBundle\Service\ScoreCalculator\OneMonthFundScoreCalculator;
+use AppBundle\Service\ScoreCalculator\OneYearFundScoreCalculator;
+use AppBundle\Service\ScoreCalculator\ScoreCalculatorAggregate;
+use AppBundle\Service\ScoreCalculator\SixMonthFundScoreCalculator;
+use AppBundle\Service\ScoreCalculator\ThreeMonthFundScoreCalculator;
 use AppBundle\Service\Sorter\Sorter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -16,24 +20,24 @@ class FundListCommand extends Command
     /** @var FundRepository  */
     protected $fundRepository;
 
-    /** @var FundScoreCalculatorInterface */
-    protected $fundScoreCalculator;
+    /** @var ScoreCalculatorAggregate */
+    protected $scoreCalculatorAggregate;
 
     /** @var Sorter */
     protected $sorter;
 
     /**
      * @param FundRepository               $fundRepository
-     * @param FundScoreCalculatorInterface $fundScoreCalculator
+     * @param ScoreCalculatorAggregate $scoreCalculatorAggregate
      * @param Sorter                       $sorter
      */
     public function __construct(
         FundRepository $fundRepository,
-        FundScoreCalculatorInterface $fundScoreCalculator,
+        ScoreCalculatorAggregate $scoreCalculatorAggregate,
         Sorter $sorter
     ) {
         $this->fundRepository = $fundRepository;
-        $this->fundScoreCalculator = $fundScoreCalculator;
+        $this->scoreCalculatorAggregate = $scoreCalculatorAggregate;
         $this->sorter = $sorter;
 
         parent::__construct();
@@ -56,10 +60,18 @@ class FundListCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $funds = $this->fundRepository->findAll();
-        $funds = $this->sorter->getSortedByScore($funds, $this->fundScoreCalculator);
+        $this->scoreCalculatorAggregate->calculateScore($funds);
+        $funds = $this->sorter->getSortedByScore($funds, OneMonthFundScoreCalculator::NAME);
 
-        $io->table(['Fund name', 'External ID', 'Score'], array_map(function (Fund $fund) {
-            return [$fund->getName(), $fund->getExternalId(), $this->formatScore($fund->getScore())];
+        $io->table(['Fund name', 'External ID', '1M Score', '3M Score', '6M Score', '1Y Score'], array_map(function (Fund $fund) {
+            return [
+                $fund->getName(),
+                $fund->getExternalId(),
+                $this->formatScore($fund->getScoreValue(OneMonthFundScoreCalculator::NAME)),
+                $this->formatScore($fund->getScoreValue(ThreeMonthFundScoreCalculator::NAME)),
+                $this->formatScore($fund->getScoreValue(SixMonthFundScoreCalculator::NAME)),
+                $this->formatScore($fund->getScoreValue(OneYearFundScoreCalculator::NAME)),
+            ];
         }, $funds));
     }
 
