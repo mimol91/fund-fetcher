@@ -3,7 +3,7 @@
         <h1>Fund list</h1>
     </div>
     <div class="fund-list">
-        <div ng-hide="funds" id="overlay">
+        <div data-ng-hide="funds" id="overlay">
             <div><p class="loading">Loading...</p></div>
             <div id="spin"><i class="fa fa-spinner fa-spin spin-big"></i></div>
         </div>
@@ -23,47 +23,61 @@
                 <td style="width: 60%">
                     <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
                         Fund Name
-                        <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                        <span data-ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span data-ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
                 </td>
                 <td style="width: 10%">
                     <a href="#" ng-click="sortType = 'score.one_month'; sortReverse = !sortReverse">
                         Score 1M
-                        <span ng-show="sortType == 'score.one_month' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'score.one_month' && sortReverse" class="fa fa-caret-up"></span>
+                        <span data-ng-show="sortType == 'score.one_month' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span data-ng-show="sortType == 'score.one_month' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
                 </td>
                 <td style="width: 10%">
                     <a href="#" ng-click="sortType = 'score.three_month'; sortReverse = !sortReverse">
                         Score 3M
-                        <span ng-show="sortType == 'score.three_month' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'score.three_month' && sortReverse" class="fa fa-caret-up"></span>
+                        <span data-ng-show="sortType == 'score.three_month' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span data-ng-show="sortType == 'score.three_month' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
                 </td>
                 <td style="width: 10%">
                     <a href="#" ng-click="sortType = 'score.six_month'; sortReverse = !sortReverse">
                         Score 6M
-                        <span ng-show="sortType == 'score.six_month' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'score.six_month' && sortReverse" class="fa fa-caret-up"></span>
+                        <span data-ng-show="sortType == 'score.six_month' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span data-ng-show="sortType == 'score.six_month' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
                 </td>
                 <td style="width: 10%">
                     <a href="#" ng-click="sortType = 'score.one_year'; sortReverse = !sortReverse">
                         Score 1Y
-                        <span ng-show="sortType == 'score.one_year' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'score.one_year' && sortReverse" class="fa fa-caret-up"></span>
+                        <span data-ng-show="sortType == 'score.one_year' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span data-ng-show="sortType == 'score.one_year' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
                 </td>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="fund in funds | orderBy:sortType:sortReverse | emptyToEnd:sortType | filter:searchFund track by $index">
+            <tr data-ng-click="toggleActiveId(fund.externalId)"
+                data-ng-repeat-start="fund in funds | orderBy:sortType:sortReverse | emptyToEnd:sortType | filter:searchFund track by $index"
+            >
                 <td>{{ fund.name }}</td>
                 <td>{{ fund.score.one_month | number:2 }}</td>
                 <td>{{ fund.score.three_month | number:2 }}</td>
                 <td>{{ fund.score.six_month | number:2 }}</td>
                 <td>{{ fund.score.one_year | number:2 }}</td>
+            </tr>
+            <tr data-ng-repeat-end data-ng-show="activeId == fund.externalId">
+                <td class="fund-details" colspan="5" id="found-{{ fund.externalId}}">
+                    {{fund.data}}
+                    <div data-ng-hide="fund.data">
+                        <div><p class="loading">Loading...</p></div>
+                        <i class="fa fa-spinner fa-spin spin-big"></i>
+                    </div>
+                    <div data-ng-show="fund.data">
+                        YEEY
+                    </div>
+                </td>
             </tr>
             </tbody>
         </table>

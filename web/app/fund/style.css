@@ -35,6 +35,20 @@
     padding-left: 4px;
 }
 
+.fund-list table tr {
+    cursor: pointer;
+}
+.fund-list table tr:hover {
+    background-color: #ffc;
+}
+.fund-details {
+    height: 300px;
+}
+.fund-details i {
+    text-align: center;
+    font-size: 90px;
+    display: block;
+}
 
 @keyframes decrease {
     0% {
