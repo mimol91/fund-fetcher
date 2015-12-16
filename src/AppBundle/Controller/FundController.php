@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Fund;
+use AppBundle\Service\ScoreCalculator\OneMonthFundScoreCalculator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,8 +18,11 @@ class FundController extends Controller
     public function listAction()
     {
         $funds = $this->get('repository.fund')->findAll();
+        $sorter = $this->get('app.fetcher.sorter');
         $fundScoreCalculatorAggregate = $this->get('app.score_calculator.aggregate');
         $fundScoreCalculatorAggregate->calculateScore($funds);
+        $funds = $sorter->getSortedByScore($funds, OneMonthFundScoreCalculator::NAME);
+
 
         $jsonData = $this->get('app.serializer.fund')->serializeFunds($funds);
 

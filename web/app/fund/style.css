@@ -1,0 +1,57 @@
+#overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: white;
+
+}
+#overlay i {
+    vertical-align:middle;
+    text-align:center;
+    display: block;
+    overflow: hidden;
+
+}
+#overlay i.spin-big {
+    font-size: 210px;
+    animation: decrease 10s infinite linear, rotate 2s infinite linear;
+}
+#overlay p.loading {
+    font-size: 40px;
+    text-align:center;
+}
+.fund-list {
+    position: relative;
+}
+#spin {
+    margin: auto;
+    width: 300px;
+    height: 300px;
+}
+.fa-caret-down, .fa-caret-up {
+    padding-left: 4px;
+}
+
+
+@keyframes decrease {
+    0% {
+        font-size: 210px;
+    }
+    50% {
+        font-size: 100px;
+    }
+    1000% {
+        font-size: 210px;
+    }
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
