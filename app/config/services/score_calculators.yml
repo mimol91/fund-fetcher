@@ -2,6 +2,11 @@ services:
     app.score_calculator.aggregate:
         class: AppBundle\Service\ScoreCalculator\ScoreCalculatorAggregate
 
+    app.score_calculator.one_week:
+        class: AppBundle\Service\ScoreCalculator\OneWeekFundScoreCalculator
+        tags:
+            -  { name: app.score_calculator }
+
     app.score_calculator.one_month:
         class: AppBundle\Service\ScoreCalculator\OneMonthFundScoreCalculator
         tags:

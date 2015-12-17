@@ -5,6 +5,7 @@ namespace AppBundle\Command;
 use AppBundle\Entity\Fund;
 use AppBundle\Repository\FundRepository;
 use AppBundle\Service\ScoreCalculator\OneMonthFundScoreCalculator;
+use AppBundle\Service\ScoreCalculator\OneWeekFundScoreCalculator;
 use AppBundle\Service\ScoreCalculator\OneYearFundScoreCalculator;
 use AppBundle\Service\ScoreCalculator\ScoreCalculatorAggregate;
 use AppBundle\Service\ScoreCalculator\SixMonthFundScoreCalculator;
@@ -63,10 +64,11 @@ class FundListCommand extends Command
         $this->scoreCalculatorAggregate->calculateScore($funds);
         $funds = $this->sorter->getSortedByScore($funds, OneMonthFundScoreCalculator::NAME);
 
-        $io->table(['Fund name', 'External ID', '1M Score', '3M Score', '6M Score', '1Y Score'], array_map(function (Fund $fund) {
+        $io->table(['Fund name', 'External ID', '1W Score', '1M Score', '3M Score', '6M Score', '1Y Score'], array_map(function (Fund $fund) {
             return [
                 $fund->getName(),
                 $fund->getExternalId(),
+                $this->formatScore($fund->getScoreValue(OneWeekFundScoreCalculator::NAME)),
                 $this->formatScore($fund->getScoreValue(OneMonthFundScoreCalculator::NAME)),
                 $this->formatScore($fund->getScoreValue(ThreeMonthFundScoreCalculator::NAME)),
                 $this->formatScore($fund->getScoreValue(SixMonthFundScoreCalculator::NAME)),

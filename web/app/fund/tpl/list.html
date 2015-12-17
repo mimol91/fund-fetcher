@@ -20,11 +20,18 @@
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
-                <td style="width: 60%">
+                <td style="width: 50%">
                     <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
                         Fund Name
                         <span data-ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
                         <span data-ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </td>
+                <td style="width: 10%">
+                    <a href="#" ng-click="sortType = 'score.one_week'; sortReverse = !sortReverse">
+                        Score 1W
+                        <span data-ng-show="sortType == 'score.one_week' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span data-ng-show="sortType == 'score.one_week' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
                 </td>
                 <td style="width: 10%">
@@ -62,13 +69,14 @@
                 data-ng-repeat-start="fund in funds | orderBy:sortType:sortReverse | emptyToEnd:sortType | filter:searchFund track by $index"
             >
                 <td>{{ fund.name }}</td>
+                <td>{{ fund.score.one_week | number:2 }}</td>
                 <td>{{ fund.score.one_month | number:2 }}</td>
                 <td>{{ fund.score.three_month | number:2 }}</td>
                 <td>{{ fund.score.six_month | number:2 }}</td>
                 <td>{{ fund.score.one_year | number:2 }}</td>
             </tr>
             <tr data-ng-repeat-end data-ng-show="activeId == fund.externalId">
-                <td class="fund-details" colspan="5" id="found-{{ fund.externalId}}">
+                <td class="fund-details" colspan="6" id="found-{{ fund.externalId}}">
                     <div data-ng-hide="fund.data">
                         <div><p class="loading">Loading...</p></div>
                         <i class="fa fa-spinner fa-spin spin-big"></i>
