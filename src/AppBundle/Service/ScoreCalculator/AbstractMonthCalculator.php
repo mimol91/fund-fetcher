@@ -7,7 +7,6 @@ use AppBundle\Entity\Fund;
 use AppBundle\Model\FundData;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
-use DateTimeInterface;
 use Doctrine\Common\Collections\Criteria;
 
 abstract class AbstractMonthCalculator
@@ -23,30 +22,34 @@ abstract class AbstractMonthCalculator
     {
         $fundDataCollection = $fund->getFundDataCollection();
 
-        $startValue = $this->getStartValue($fundDataCollection);
         $endValue = $this->getEndValue($fundDataCollection);
+        $startValue = $this->getStartValue($fundDataCollection, $endValue);
 
-        $gain = 100 - ($endValue * 100 / $startValue);
+        $gain = -100 + $endValue->getPrice() * 100 / $startValue->getPrice();
 
         return $gain;
     }
 
     /**
-     * @return DateTimeInterface
+     * @return CarbonInterval
      */
-    abstract protected function getStartDate();
+    abstract protected function getStartInterval();
 
     /**
      * @param FundDataCollection $fundDataCollection
      *
-     * @return float
+     * @return FundData $endValue
      *
      * @throws ScoreCalculatorException
      */
-    private function getStartValue(FundDataCollection $fundDataCollection)
+    private function getStartValue(FundDataCollection $fundDataCollection, FundData $endValue)
     {
+
+        $startDate = (new Carbon())->setTimestamp($endValue->getDate()->getTimestamp());
+        $startDate->sub($this->getStartInterval());
+        
         $criteria = Criteria::create()
-            ->andWhere(Criteria::expr()->gte('date', $this->getStartDate()))
+            ->andWhere(Criteria::expr()->gte('date', $startDate))
             ->setMaxResults(1);
 
         $recentData = $fundDataCollection->matching($criteria)->first();
@@ -55,13 +58,13 @@ abstract class AbstractMonthCalculator
             throw new ScoreCalculatorException('Unable to determine start value.');
         }
 
-        return $recentData->getPrice();
+        return $recentData;
     }
 
     /**
      * @param FundDataCollection $fundDataCollection
      *
-     * @return float
+     * @return FundData
      *
      * @throws ScoreCalculatorException
      */
@@ -83,7 +86,7 @@ abstract class AbstractMonthCalculator
             ));
         }
 
-        return $recentData->getPrice();
+        return $recentData;
     }
 
     /**

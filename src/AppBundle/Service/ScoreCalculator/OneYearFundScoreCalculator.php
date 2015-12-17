@@ -2,7 +2,7 @@
 
 namespace AppBundle\Service\ScoreCalculator;
 
-use Carbon\Carbon;
+use Carbon\CarbonInterval;
 
 class OneYearFundScoreCalculator extends AbstractMonthCalculator implements FundScoreCalculatorInterface
 {
@@ -11,9 +11,9 @@ class OneYearFundScoreCalculator extends AbstractMonthCalculator implements Fund
     /**
      * {@inheritdoc}
      */
-    protected function getStartDate()
+    protected function getStartInterval()
     {
-        return Carbon::today()->subYear();
+        return CarbonInterval::year();
     }
 
     /**

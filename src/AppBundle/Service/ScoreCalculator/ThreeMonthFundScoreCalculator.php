@@ -2,7 +2,7 @@
 
 namespace AppBundle\Service\ScoreCalculator;
 
-use Carbon\Carbon;
+use Carbon\CarbonInterval;
 
 class ThreeMonthFundScoreCalculator extends AbstractMonthCalculator implements FundScoreCalculatorInterface
 {
@@ -10,9 +10,9 @@ class ThreeMonthFundScoreCalculator extends AbstractMonthCalculator implements F
     /**
      * {@inheritdoc}
      */
-    protected function getStartDate()
+    protected function getStartInterval()
     {
-        return Carbon::today()->subMonth(3);
+        return CarbonInterval::months(3);
     }
 
     /**
