@@ -23,7 +23,6 @@ class FundController extends Controller
         $fundScoreCalculatorAggregate->calculateScore($funds);
         $funds = $sorter->getSortedByScore($funds, OneMonthFundScoreCalculator::NAME);
 
-
         $jsonData = $this->get('app.serializer.fund')->serializeFunds($funds);
 
         return new Response($jsonData);

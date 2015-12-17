@@ -6,13 +6,13 @@ var app = angular.module('app', [
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/');
 
-    $stateProvider
+  $stateProvider
         .state('main', {
-            url: '/',
-            views: {
-                'content@': fund.state
-            }
+          url: '/',
+          views: {
+            'content@': fund.state
+          }
         });
 });

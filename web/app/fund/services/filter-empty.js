@@ -1,26 +1,26 @@
 module.exports =  function() {
-    var accessProperties = function(object, string){
-        var explodedString = string.split('.') ;
-        for (i = 0, l = explodedString.length; i<l; i++){
-            object = object[explodedString[i]];
-        }
+  var accessProperties = function(object, string) {
+    var explodedString = string.split('.');
+    for (var i = 0, l = explodedString.length; i < l; i++) {
+      object = object[explodedString[i]];
+    }
 
-        return object;
-    };
+    return object;
+  };
 
+  return function(array, key) {
+    if (!angular.isArray(array)) { return; }
 
-    return function (array, key) {
-        if (!angular.isArray(array)) { return; }
-        if (!key) { return; }
+    if (!key) { return; }
 
-        var present = array.filter(function (item) {
-            return accessProperties(item, key);
-        });
+    var present = array.filter(function(item) {
+      return accessProperties(item, key);
+    });
 
-        var empty = array.filter(function (item) {
-            return !item[key];
-        });
+    var empty = array.filter(function(item) {
+      return !item[key];
+    });
 
-        return present.concat(empty);
-    };
+    return present.concat(empty);
+  };
 };
