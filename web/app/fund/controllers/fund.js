@@ -7,20 +7,12 @@ module.exports = function($scope, FundRepository) {
         $scope.sortType = 'name';
     });
 
-    $scope.getDetails = function(externalId) {
-        var fund = _.find($scope.funds, 'externalId', externalId);
-
-        FundRepository.get(fund.id).then(function(fundData){
-            fund.data = fundData.fundDataCollection || [];
-        });
-    };
-
     $scope.toggleActiveId = function(externalId) {
         if ($scope.activeId == externalId) {
             $scope.activeId = null;
         } else {
             $scope.activeId = externalId;
-            $scope.getDetails(externalId);
+            $scope.$broadcast('fund:details', externalId);
         }
     };
 };

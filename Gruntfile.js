@@ -41,7 +41,8 @@ module.exports = function(g) {
                     'bower_components/angular-ui-router/release/angular-ui-router.js',
                     'bower_components/jquery/dist/jquery.js',
                     'bower_components/bootstrap/js/bootstrap.js',
-                    'bower_components/lodash/lodash.js'
+                    'bower_components/lodash/lodash.js',
+                    'bower_components/highcharts/lib/highstock.js'
                 ],
                 dest: 'web/build/vendor.js'
             },

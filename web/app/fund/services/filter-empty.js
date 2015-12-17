@@ -8,12 +8,19 @@ module.exports =  function() {
         return object;
     };
 
+
     return function (array, key) {
-        if (!angular.isArray(array)) { return ; }
+        if (!angular.isArray(array)) { return; }
         if (!key) { return; }
 
-        return array.filter(function (item) {
+        var present = array.filter(function (item) {
             return accessProperties(item, key);
         });
+
+        var empty = array.filter(function (item) {
+            return !item[key];
+        });
+
+        return present.concat(empty);
     };
 };

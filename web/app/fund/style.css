@@ -6,7 +6,6 @@
     left: 0;
     z-index: 10;
     background-color: white;
-
 }
 #overlay i {
     vertical-align:middle;
@@ -42,7 +41,7 @@
     background-color: #ffc;
 }
 .fund-details {
-    height: 300px;
+    height: 400px;
 }
 .fund-details i {
     text-align: center;

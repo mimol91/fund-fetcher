@@ -69,14 +69,11 @@
             </tr>
             <tr data-ng-repeat-end data-ng-show="activeId == fund.externalId">
                 <td class="fund-details" colspan="5" id="found-{{ fund.externalId}}">
-                    {{fund.data}}
                     <div data-ng-hide="fund.data">
                         <div><p class="loading">Loading...</p></div>
                         <i class="fa fa-spinner fa-spin spin-big"></i>
                     </div>
-                    <div data-ng-show="fund.data">
-                        YEEY
-                    </div>
+                    <div data-fund-details data-fund="fund" data-ng-show="fund.data"></div>
                 </td>
             </tr>
             </tbody>
