@@ -64,8 +64,8 @@ abstract class AbstractAsyncCommand extends Command
             return 0;
         }
 
-        $versionIds = $this->getElementsIdsToProcess();
-        $this->createJobs($versionIds);
+        $elementsId = $this->getElementsIdsToProcess();
+        $this->createJobs($elementsId);
 
         return 0;
     }
@@ -94,8 +94,8 @@ abstract class AbstractAsyncCommand extends Command
             $reamingJobs = count($chunk);
             $processHolder = [];
 
-            foreach ($chunk as $versionId) {
-                $process = $this->createCommandProcess($versionId);
+            foreach ($chunk as $elementId) {
+                $process = $this->createCommandProcess($elementId);
                 $process->start();
                 $processHolder[] = $process;
             }

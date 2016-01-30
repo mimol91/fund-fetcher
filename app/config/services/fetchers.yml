@@ -1,5 +1,6 @@
 parameters:
     fund_fetch_url_pattern: 'http://www.notowania.openlife.pl/System/QuotesExportCsv?foundid=%d'
+    fund_fetch_url_list_pattern: 'http://www.notowania.openlife.pl/system/productlist?distributorid=13&productid=146'
 services:
     app.fetcher.fund:
         class: AppBundle\Service\Fetcher\FundDataFetcher

@@ -22,3 +22,9 @@ services:
         arguments: ["@app.fetcher.fund", "@repository.fund", "@doctrine.orm.default_entity_manager"]
         tags:
             -  { name: console.command }
+
+    app.command.fund.fixtures:
+        class: AppBundle\Command\FetchFundsListCommand
+        arguments: ["@doctrine.orm.default_entity_manager", "%fund_fetch_url_list_pattern%"]
+        tags:
+            -  { name: console.command }

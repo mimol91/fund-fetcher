@@ -44,10 +44,9 @@ abstract class AbstractMonthCalculator
      */
     private function getStartValue(FundDataCollection $fundDataCollection, FundData $endValue)
     {
-
         $startDate = (new Carbon())->setTimestamp($endValue->getDate()->getTimestamp());
         $startDate->sub($this->getStartInterval());
-        
+
         $criteria = Criteria::create()
             ->andWhere(Criteria::expr()->gte('date', $startDate))
             ->setMaxResults(1);
