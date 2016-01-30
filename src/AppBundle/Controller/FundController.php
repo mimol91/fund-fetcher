@@ -6,6 +6,9 @@ use AppBundle\Entity\Fund;
 use AppBundle\Service\ScoreCalculator\OneMonthFundScoreCalculator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
@@ -40,5 +43,23 @@ class FundController extends Controller
         $jsonData = $this->get('app.serializer.fund')->serializeFund($fund);
 
         return new Response($jsonData);
+    }
+
+    /**
+     * @Route("/fetch", name="fetch")
+     * @Method({"GET"})
+     */
+    public function fetchAction()
+    {
+        $kernel = $this->get('kernel');
+        $application = new Application($kernel);
+        $application->setAutoExit(false);
+
+        $input = new ArrayInput(['command' => 'app:fund:fetch']);
+
+        $output = new NullOutput();
+        $application->run($input, $output);
+
+        return new Response(null, 204);
     }
 }
