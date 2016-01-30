@@ -27,7 +27,10 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
         "guzzlehttp/guzzle": "^6.1",
-        "nesbot/carbon": "^1.21"
+        "nesbot/carbon": "^1.21",
+        "ext-pdo": "*",
+        "ext-pdo_pgsql": "*",
+        "ext-intl": "*"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
@@ -59,7 +62,14 @@
         "symfony-tests-dir": "tests",
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
+            "file": "app/config/parameters.yml",
+            "env-map": {
+                "database_host": "DATABASE_HOST",
+                "database_port": "DATABASE_PORT",
+                "database_name": "DATABASE_NAME",
+                "database_user": "DATABASE_USER",
+                "database_password": "DATABASE_PASSWORD"
+            }
         }
     }
 }

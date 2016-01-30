@@ -42,7 +42,7 @@ module.exports = function(g) {
                     'bower_components/jquery/dist/jquery.js',
                     'bower_components/bootstrap/js/bootstrap.js',
                     'bower_components/lodash/lodash.js',
-                    'bower_components/highcharts/lib/highstock.js'
+                    'bower_components/highcharts/highstock.js'
                 ],
                 dest: 'web/build/vendor.js'
             },
@@ -209,7 +209,7 @@ module.exports = function(g) {
 
     g.registerTask('postinstall', [
         'vendor',
-        'build-dev'
+        'build-prod'
     ]);
 
     g.registerTask('default', [

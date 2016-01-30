@@ -25,6 +25,6 @@ services:
 
     app.command.fund.fixtures:
         class: AppBundle\Command\FetchFundsListCommand
-        arguments: ["@doctrine.orm.default_entity_manager", "%fund_fetch_url_list_pattern%"]
+        arguments: ["@doctrine.orm.default_entity_manager", "%kernel.root_dir%", "%fund_filename%"]
         tags:
             -  { name: console.command }

@@ -1,0 +1,284 @@
+[{
+  "Id": 241,
+  "Name": "UFK Pieniężny 16"
+
+}, {
+  "Id": 240,
+  "Name": "UFK Pieniężny 15"
+
+}, {
+  "Id": 239,
+  "Name": "UFK Pieniężny 14"
+
+}, {
+  "Id": 168,
+  "Name": "UFK Open Life Stabilnego Wzrostu"
+
+}, {
+  "Id": 165,
+  "Name": "UFK Open Life Obligacji Korporacyjnych 2"
+
+}, {
+  "Id": 148,
+  "Name": "UFK Open Life Dynamiczny"
+
+}, {
+  "Id": 66,
+  "Name": "Open Life - UniStabilny Wzrost"
+
+}, {
+  "Id": 65,
+  "Name": "Open Life - UniKorona Zrównoważony"
+
+}, {
+  "Id": 64,
+  "Name": "Open Life - UniKorona Pieniężny"
+
+}, {
+  "Id": 63,
+  "Name": "Open Life - UniKorona Obligacje"
+
+}, {
+  "Id": 62,
+  "Name": "Open Life - UniKorona Akcje"
+
+}, {
+  "Id": 61,
+  "Name": "Open Life - UniAkcje Wzrostu"
+
+}, {
+  "Id": 60,
+  "Name": "Open Life - UniAkcje Nowa Europa"
+
+}, {
+  "Id": 59,
+  "Name": "Open Life - UniAkcje Małych i Średnich Spółek"
+
+}, {
+  "Id": 58,
+  "Name": "Open Life - Superfund Płynnościowy"
+
+}, {
+  "Id": 57,
+  "Name": "Open Life - Superfund GoldFuture"
+
+}, {
+  "Id": 56,
+  "Name": "Open Life - Superfund Akcji"
+
+}, {
+  "Id": 305,
+  "Name": "Open Life - SKARBIEC III Filar"
+
+}, {
+  "Id": 307,
+  "Name": "Open Life - Skarbiec Depozytowy"
+
+}, {
+  "Id": 306,
+  "Name": "Open Life - Skarbiec Akcja"
+
+}, {
+  "Id": 54,
+  "Name": "Open Life - Schroder ISF Emerging Markets Debt Absolute Return"
+
+}, {
+  "Id": 53,
+  "Name": "Open Life - Schroder ISF Asian Convertible Bond"
+
+}, {
+  "Id": 52,
+  "Name": "Open Life - PKO Strategicznej Alokacji"
+
+}, {
+  "Id": 51,
+  "Name": "Open Life - PKO Skarbowy"
+
+}, {
+  "Id": 456,
+  "Name": "Open Life - PKO Papierów Dłużnych Plus"
+
+}, {
+  "Id": 50,
+  "Name": "Open Life - PKO Obligacji"
+
+}, {
+  "Id": 457,
+  "Name": "Open Life - PKO Akcji Plus"
+
+}, {
+  "Id": 49,
+  "Name": "Open Life - PKO Akcji Nowa Europa"
+
+}, {
+  "Id": 48,
+  "Name": "Open Life - PKO Akcji Małych i Średnich Spółek"
+
+}, {
+  "Id": 47,
+  "Name": "Open Life - PKO Akcji"
+
+}, {
+  "Id": 46,
+  "Name": "Open Life - Open Finance Stabilnego Wzrostu"
+
+}, {
+  "Id": 45,
+  "Name": "Open Life - Open Finance Pieniężny"
+
+}, {
+  "Id": 44,
+  "Name": "Open Life - Open Finance Obligacji"
+
+}, {
+  "Id": 43,
+  "Name": "Open Life - Open Finance Aktywnej Alokacji"
+
+}, {
+  "Id": 42,
+  "Name": "Open Life - Open Finance Akcji Małych i Średnich Spółek"
+}, {
+  "Id": 41,
+  "Name": "Open Life - Open Finance Akcji"
+
+}, {
+  "Id": 40,
+  "Name": "Open Life - Novo Zrównoważonego Wzrostu"
+
+}, {
+  "Id": 39,
+  "Name": "Open Life - Novo Obligacji Przedsiębiorstw"
+
+}, {
+  "Id": 38,
+  "Name": "Open Life - Novo Gotówkowy"
+
+}, {
+  "Id": 37,
+  "Name": "Open Life - Novo Akcji"
+
+}, {
+  "Id": 36,
+  "Name": "Open Life - Noble Fund Pieniężny"
+
+}, {
+  "Id": 35,
+  "Name": "Open Life - Noble Fund Mieszany"
+
+}, {
+  "Id": 34,
+  "Name": "Open Life - Noble Fund Global Return"
+
+}, {
+  "Id": 33,
+  "Name": "Open Life - Noble Fund Akcji Małych i Średnich Spółek"
+
+}, {
+  "Id": 32,
+  "Name": "Open Life - Noble Fund Akcji"
+
+}, {
+  "Id": 31,
+  "Name": "Open Life - Noble Fund Africa and Frontier"
+
+}, {
+  "Id": 30,
+  "Name": "Open Life - Legg Mason Strateg"
+
+}, {
+  "Id": 29,
+  "Name": "Open Life - Legg Mason Pieniężny"
+
+}, {
+  "Id": 28,
+  "Name": "Open Life - Legg Mason Obligacji"
+
+}, {
+  "Id": 27,
+  "Name": "Open Life - Legg Mason Akcji"
+
+}, {
+  "Id": 26,
+  "Name": "Open Life - KBC Stabilny"
+
+}, {
+  "Id": 25,
+  "Name": "Open Life - KBC Aktywny"
+
+}, {
+  "Id": 24,
+  "Name": "Open Life - KBC Akcyjny"
+
+}, {
+  "Id": 23,
+  "Name": "Open Life - Investor Indie i Chiny"
+
+}, {
+  "Id": 22,
+  "Name": "Open Life - Investor Gold Otwarty"
+
+}, {
+  "Id": 21,
+  "Name": "Open Life - Investor Agrobiznes"
+
+}, {
+  "Id": 12,
+  "Name": "Open Life - AXA Stabilnego Wzrostu"
+
+}, {
+  "Id": 11,
+  "Name": "Open Life - AXA Obligacji"
+
+}, {
+  "Id": 13,
+  "Name": "Open Life - AXA Makro Alokacji"
+
+}, {
+  "Id": 10,
+  "Name": "Open Life - AXA Lokacyjny"
+
+}, {
+  "Id": 9,
+  "Name": "Open Life - AXA Akcji Dużych Spółek"
+
+}, {
+  "Id": 8,
+  "Name": "Open Life - AXA Akcji"
+
+}, {
+  "Id": 7,
+  "Name": "Open Life - Arka BZ WBK Stabilnego Wzrostu"
+
+}, {
+  "Id": 6,
+  "Name": "Open Life - Arka BZ WBK Obligacji Skarbowych"
+
+}, {
+  "Id": 5,
+  "Name": "Open Life - Arka BZ WBK Akcji Tureckich"
+
+}, {
+  "Id": 4,
+  "Name": "Open Life - Arka BZ WBK Akcji Polskich"
+
+}, {
+  "Id": 3,
+  "Name": "Open Life - Allianz US High Yield - PLN"
+
+}, {
+  "Id": 481,
+  "Name": "Open Life - Allianz Selektywny"
+
+}, {
+  "Id": 232,
+  "Name": "Open Life - Allianz Pieniężny"
+
+}, {
+  "Id": 2,
+  "Name": "Open Life - Allianz Europe Equity Growth - PLN"
+
+}, {
+  "Id": 1,
+  "Name": "Open Life - Allianz Euro High Yield Bond - PLN"
+
+}]
