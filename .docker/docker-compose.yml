@@ -1,11 +1,11 @@
 kurs-php:
-  image: mobilizer
+  image: jakubsacha/symfony-docker:php5-dev
   links:
    - kurs-db
   ports:
    - "80:80"
   volumes:
-   - ../:/app
+   - ../:/var/www/html
 kurs-db:
   image: mysql:5.5
   ports:
@@ -13,5 +13,5 @@ kurs-db:
   environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: root
-      MYSQL_USER: xsdev
-      MYSQL_PASSWORD: xsdev
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_pass
